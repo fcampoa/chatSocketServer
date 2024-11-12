@@ -56,7 +56,6 @@ public class ChatServer extends Observable implements ConnectionTemplate, Runnab
         var friend = connections.stream().filter(c -> c.getUser().equals(message.getReceiver())).findFirst().orElse(null);
         if (friend != null) {
             friend.sendMessage(message);
-            notifyObservers(message);
         }
     }
 
@@ -89,8 +88,6 @@ public class ChatServer extends Observable implements ConnectionTemplate, Runnab
                 connectionThread.start();
                 connections.add(client);
                 client.subscribe(this);
-                // var message = new Message.Builder().body(getUsers()).messageType(MessageType.CONNECTION_MESSAGE).build();
-                //client.sendMessage(message);
             }
         } catch (Exception ex) {
             logger.error(String.format("Error al iniciar la conexion al servidor: %s", ex.getMessage()));

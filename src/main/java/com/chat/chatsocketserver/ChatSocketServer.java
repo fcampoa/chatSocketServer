@@ -11,7 +11,6 @@ package com.chat.chatsocketserver;
 public class ChatSocketServer {
 
     public static void main(String[] args) {
-        // Server server = new Server();
         ServerController serverController = new ServerController();
     }
 }
